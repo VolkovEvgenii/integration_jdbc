@@ -27,8 +27,8 @@ public class JdbcApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Circuit newCircuit = new Circuit();
-        newCircuit.setId("hey");
-        newCircuit.setId("HEY");
+        newCircuit.setId("Pak");
+        newCircuit.setId("PAK");
         gateway.save(newCircuit);
     }
 }

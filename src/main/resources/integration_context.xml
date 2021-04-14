@@ -14,10 +14,12 @@
 
     <int:gateway id="gateway" service-interface="ru.volkov.integration.jdbc.CircuitGateway" default-request-channel="inboundChannel"/>
 
-    <int-jdbc:outbound-channel-adapter
-        channel="inboundChannel"
+    <int-jdbc:outbound-gateway
+        request-channel="inboundChannel"
         data-source="dataSource"
-        query="insert into main.circuit (id, name) values (:payload.id, :payload.name)"/>
+        update="insert into main.circuit (id, name) values (:payload.id, :payload.name)"
+        query="select * from main.circuit as c where c.id = :payload.id"
+        reply-channel="jdbcChannel"/>
 
     <bean id="mp" class="ru.volkov.integration.jdbc.MessagePrinter"/>
 
